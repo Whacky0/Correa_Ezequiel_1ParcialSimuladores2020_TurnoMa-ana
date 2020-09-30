@@ -23,7 +23,7 @@ public class SokobanGameManager : MonoBehaviour
     Vector2 posicionJugador;
 
     string orientacionJugador;
-    string nombreNivelActual = "Nivel1";
+    string nombreNivelActual = "Nivel2";
     bool gameOver = false;
     bool estoyDeshaciendo = false;
 
@@ -43,6 +43,7 @@ public class SokobanGameManager : MonoBehaviour
         nivel = SokobanLevelManager.instancia.dameNivel(nombre);
         posOcupadasEsperadasCasillerosTarget = nivel.Tablero.damePosicionesObjetos("CasilleroTarget");
         
+
         InstanciadorPrefabs.instancia.graficarCasilleros(nivel.Tablero, casillero);
         InstanciadorPrefabs.instancia.graficarCasillerosTarget(nivel.Tablero, casilleroTarget);
         InstanciadorPrefabs.instancia.graficarObjetosTablero(nivel.Tablero, SokobanLevelManager.instancia.dameLstPrefabsSokoban());
@@ -50,10 +51,7 @@ public class SokobanGameManager : MonoBehaviour
 
     private void Update()
     {
-        posOcupadasBloques = nivel.Tablero.damePosicionesObjetos("Bloque");
-
         
-       
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             orientacionJugador = "derecha";
@@ -88,7 +86,7 @@ public class SokobanGameManager : MonoBehaviour
 
     private void mover()
     {
-        
+        posOcupadasBloques = nivel.Tablero.damePosicionesObjetos("Bloque");
         if (estoyDeshaciendo == false)
         {
             tablAux = new Tablero(nivel.Tablero.casilleros.GetLength(0), nivel.Tablero.casilleros.GetLength(1));
